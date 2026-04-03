@@ -1,3 +1,5 @@
+#ECOSORT
+
 # Smart Waste Segregation & Recycling Tracker
 
 A lightweight Python HTTP server that serves a multi-page static web UI for a smart waste segregation and recycling tracker, plus a minimal SQLite-backed API for scan history.
