@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Innovation Hub | Smart Waste Tracker</title>
+  <link rel="stylesheet" href="/assets/css/urban.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <main class="hub">
+    <header class="hub-header">
+      <div>
+        <p class="eyebrow">Urban Area</p>
+        <h1>Waste-to-Product Innovation Hub</h1>
+        <p class="subtitle">Turn urban waste into useful products and income opportunities.</p>
+      </div>
+      <div class="profile-chip">ABHII</div>
+    </header>
+
+    <section class="panel">
+      <h2>Upload Waste Image</h2>
+      <p class="muted">Choose an image to detect the waste type and get ideas instantly.</p>
+      <div class="upload-row">
+        <label class="upload-box" for="waste-input">
+          <input id="waste-input" type="file" accept="image/*" capture="environment" />
+          <div class="upload-inner">
+            <span class="upload-icon">&#x1F4F7;</span>
+            <strong>Choose Image</strong>
+            <p>PNG, JPG, HEIC</p>
+          </div>
+        </label>
+        <button class="btn" id="analyze-btn" type="button">Analyze Waste</button>
+      </div>
+      <div class="preview" id="waste-preview">
+        <span>No image selected yet.</span>
+      </div>
+      <div class="result-card" id="result-card">
+        <h3>Detected Waste Type</h3>
+        <p id="result-text">Upload a waste image to see the result.</p>
+        <span class="status-tag safe" id="result-tag">Safe Waste</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Waste-to-Product Ideas</h2>
+      <div class="idea-grid" id="idea-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>DIY Eco Projects</h2>
+      <div class="idea-grid" id="diy-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Earn Money From Waste</h2>
+      <div class="idea-grid" id="business-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Waste Marketplace</h2>
+      <div class="market-grid">
+        <div class="market-card">
+          <h3>Categories</h3>
+          <div class="chip-row">
+            <span class="chip">Paper</span>
+            <span class="chip">Plastic</span>
+            <span class="chip">Metal</span>
+            <span class="chip">Coconut Shell</span>
+            <span class="chip">E-waste</span>
+          </div>
+        </div>
+        <div class="market-card">
+          <h3>Nearby Buyers</h3>
+          <ul class="simple-list">
+            <li>Recycling Center &#x2013; 2 km</li>
+            <li>Scrap Dealer &#x2013; 1.5 km</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Urban Recycling Impact</h2>
+      <div class="impact-grid">
+        <article class="stat-card" data-counter>
+          <div class="card-icon">&#x1F9F4;</div>`r`n          <div>`r`n            <h3>Plastic Recycled</h3>
+            <p class="stat" data-target="120">0</p>
+            <span class="unit">kg</span>
+          </div>
+        </article>
+        <article class="stat-card" data-counter>
+          <div class="card-icon">&#x1F4C4;</div>`r`n          <div>`r`n            <h3>Paper Recycled</h3>
+            <p class="stat" data-target="80">0</p>
+            <span class="unit">kg</span>
+          </div>
+        </article>
+        <article class="stat-card" data-counter>
+          <div class="card-icon">&#x1F33F;</div>`r`n          <div>`r`n            <h3>CO2 Saved</h3>
+            <p class="stat" data-target="35">0</p>
+            <span class="unit">kg</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Nearby Recycling Centers</h2>
+      <ul class="simple-list">
+        <li>Green Recycling Center &#x2013; 2 km</li>
+        <li>City Scrap Collection &#x2013; 1.3 km</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Urban Waste Problem Awareness</h2>
+      <div class="idea-grid">
+        <article class="mini-card">
+          <span class="mini-icon">&#x1F6CD;</span>`r`n          <h4>Plastic Pollution</h4>
+          <p>Plastic blocks drains and harms city wildlife and waterways.</p>
+        </article>
+        <article class="mini-card">
+          <span class="mini-icon">&#x1F5D1;</span>`r`n          <h4>Landfill Overflow</h4>
+          <p>Landfills are reaching capacity, increasing methane emissions.</p>
+        </article>
+        <article class="mini-card">
+          <span class="mini-icon">&#x26A0;</span>`r`n          <h4>Improper Segregation</h4>
+          <p>Mixing waste reduces recycling quality and increases costs.</p>
+        </article>
+        <article class="mini-card">
+          <span class="mini-icon">&#x1F4A1;</span>`r`n          <h4>Lack of Awareness</h4>
+          <p>Communities need better information to adopt eco practices.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+    <nav class="bottom-nav" role="tablist" aria-label="Dashboard navigation">
+    <a class="nav-item" href="dashboard.html" aria-selected="false">
+      <span class="nav-icon">&#x1F3E0;</span>
+      Home
+    </a>
+    <a class="nav-item" href="scan.html" aria-selected="false">
+      <span class="nav-icon">&#x1F4F7;</span>
+      Take Photo
+    </a>
+    <a class="nav-item active" href="urban.html" aria-selected="true">
+      <span class="nav-icon">&#x1F3D9;</span>
+      Urban Area
+    </a>
+    <a class="nav-item" href="rural.html" aria-selected="false">
+      <span class="nav-icon">&#x1F33E;</span>
+      Rural Area
+    </a>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="/assets/js/urban.js"></script>
+</body>
+</html>
+
+
+
+

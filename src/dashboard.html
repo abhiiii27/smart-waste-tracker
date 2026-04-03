@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Smart Waste Segregation & Recycling Tracker</title>
+  <link rel="stylesheet" href="/assets/css/dashboard.css" />
+</head>
+<body>
+  <div class="dash-bg"></div>
+
+  <main class="dashboard">
+    <header class="dash-header">
+      <div>
+        <p class="eyebrow">Hello ABHII &#x1F331;</p>
+        <h1>Welcome to Smart Waste Segregation &amp; Recycling Tracker</h1>
+        <p class="subtitle">Together we can build a cleaner and greener planet.</p>
+      </div>
+      <div class="profile-chip">ABHII</div>
+    </header>
+
+    <!-- HOME TAB -->
+    <section class="tab-section active" data-tab="home">
+      <div class="section-title">
+        <h2>Activity Overview</h2>
+        <p>Live stats and eco impact at a glance.</p>
+      </div>
+
+      <div class="card-grid">
+        <article class="stat-card" data-counter>
+          <div class="card-icon">&#x1F5D1;</div>
+          <div>
+            <h3>Waste Scanned</h3>
+            <p class="stat" data-target="142">0</p>
+          </div>
+        </article>
+        <article class="stat-card" data-counter>
+          <div class="card-icon">&#x267B;</div>
+          <div>
+            <h3>Items Recycled</h3>
+            <p class="stat" data-target="86">0</p>
+          </div>
+        </article>
+        <article class="stat-card" data-counter>
+          <div class="card-icon">&#x1F33F;</div>
+          <div>
+            <h3>Eco Points Earned</h3>
+            <p class="stat" data-target="1280">0</p>
+          </div>
+        </article>
+        <article class="stat-card" data-counter>
+          <div class="card-icon">&#x1F30D;</div>
+          <div>
+            <h3>CO2 Saved</h3>
+            <p class="stat" data-target="24">0</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="panel">
+        <h3>Recent Activity</h3>
+        <ul class="activity-list">
+          <li><span>Plastic Bottle</span><span class="pill recyclable">Recycled</span></li>
+          <li><span>Vegetable Waste</span><span class="pill safe">Compost</span></li>
+          <li><span>Paper</span><span class="pill recyclable">Recycled</span></li>
+        </ul>
+        <button class="ghost-btn" type="button">View Full History</button>
+      </div>
+
+      <div class="panel" id="reminder-panel">
+        <h3>Smart Reminder System</h3>
+        <div class="reminder-input">
+          <input id="reminder-time" type="time" />
+          <input id="reminder-text" type="text" placeholder="Add reminder" />
+          <button class="btn" id="add-reminder" type="button">Add Reminder</button>
+        </div>
+        <ul class="reminder-list" id="reminder-list"></ul>
+      </div>
+
+      <div class="panel">
+        <h3>Waste Classification</h3>
+        <div class="mini-grid">
+          <article class="mini-card">
+            <span class="mini-icon">&#x1F4A7;</span>
+            <h4>Wet Waste</h4>
+            <p>Food scraps, peels, and biodegradable waste.</p>
+          </article>
+          <article class="mini-card">
+            <span class="mini-icon">&#x1F4E6;</span>
+            <h4>Dry Waste</h4>
+            <p>Paper, cardboard, and dry packaging materials.</p>
+          </article>
+          <article class="mini-card">
+            <span class="mini-icon">&#x267B;</span>
+            <h4>Recyclable Waste</h4>
+            <p>Plastic bottles, metal cans, and glass jars.</p>
+          </article>
+          <article class="mini-card">
+            <span class="mini-icon">&#x26A0;</span>
+            <h4>Hazardous Waste</h4>
+            <p>Batteries, blades, sharp glass, and chemical waste.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="panel" id="hazard-alert">
+        <h3>? Hazardous Waste Detected</h3>
+        <p>This item appears to be broken glass. Handle carefully and dispose in a hazardous waste bin.</p>
+        <span class="status-tag danger">Dangerous Waste</span>
+      </div>
+
+      <div class="panel">
+        <h3>Eco Score &amp; Gamification</h3>
+        <div class="eco-score">
+          <div>
+            <p>Eco Level: <strong>Green Starter &#x1F331;</strong></p>
+            <p class="muted">Next Level: Eco Warrior</p>
+          </div>
+          <div>
+            <p>Eco Points</p>
+            <p class="score">1280</p>
+          </div>
+        </div>
+        <div class="progress-bar"><span style="width: 62%"></span></div>
+      </div>
+
+      <div class="panel">
+        <h3>Community Impact</h3>
+        <div class="impact-grid">
+          <div class="impact-card" data-counter>
+            <h4>Total Waste Recycled</h4>
+            <p class="stat" data-target="12400">0</p>
+          </div>
+          <div class="impact-card" data-counter>
+            <h4>Active Users</h4>
+            <p class="stat" data-target="1540">0</p>
+          </div>
+          <div class="impact-card" data-counter>
+            <h4>CO2 Emissions Reduced</h4>
+            <p class="stat" data-target="9200">0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Weekly Waste Analytics</h3>
+        <canvas id="weekly-chart" height="180"></canvas>
+      </div>
+
+      <div class="panel">
+        <h3>Quick Actions</h3>
+        <div class="quick-grid">
+          <button class="quick-card" data-action="scan">Scan Waste</button>
+          <button class="quick-card" data-action="reminder">Add Reminder</button>
+          <button class="quick-card" data-action="guide">View Recycling Guide</button>
+          <button class="quick-card" data-action="report">Report Waste Issue</button>
+        </div>
+      </div>
+
+      <div class="panel" id="recycling-centers">
+        <h3>Nearby Recycling Centers</h3>
+        <ul class="center-list">
+          <li>GreenCycle Hub - 12 km</li>
+          <li>Eco Rural Depot - 18 km</li>
+          <li>City Compost Yard - 6 km</li>
+        </ul>
+      </div>
+
+      <div class="panel" id="recycling-guide">
+        <h3>Waste Segregation Tips</h3>
+        <ul class="tip-list">
+          <li>Separate wet and dry waste daily.</li>
+          <li>Rinse plastic bottles before recycling.</li>
+          <li>Store batteries separately for safe disposal.</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3>Community Leaderboard</h3>
+        <ol class="leaderboard">
+          <li>ABHII - 1,280 pts</li>
+          <li>Meera - 1,050 pts</li>
+          <li>Arjun - 980 pts</li>
+        </ol>
+      </div>
+
+      <div class="panel">
+        <h3>Waste Scan History</h3>
+        <ul class="history-list">
+          <li>Metal Can - Recyclable</li>
+          <li>Food Scraps - Organic</li>
+          <li>Glass Bottle - Hazardous</li>
+        </ul>
+      </div>
+
+      <div class="panel" id="garbage-report">
+        <h3>Garbage Reporting Feature</h3>
+        <form id="urban-report" class="report-form">
+          <input type="file" accept="image/*" />
+          <input type="text" name="location" placeholder="Location / landmark" required />
+          <textarea name="details" rows="4" placeholder="Describe the issue" required></textarea>
+          <button class="btn" type="submit">Submit Report</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- TAKE PHOTO TAB -->
+    <section class="tab-section" data-tab="photo">
+      <div class="section-title">
+        <h2>Take Photo</h2>
+        <p>Upload waste images to analyze and classify.</p>
+      </div>
+      <div class="panel">
+        <label class="upload-box" for="photo-input">
+          <input id="photo-input" type="file" accept="image/*" capture="environment" />
+          <div class="upload-inner">
+            <span class="upload-icon">&#x1F4F7;</span>
+            <strong>Upload Waste Image</strong>
+            <p>Tap to upload or capture</p>
+          </div>
+        </label>
+        <button class="btn" id="analyze-btn" type="button">Analyze Waste</button>
+        <div class="preview" id="photo-preview">
+          <span>No image selected yet.</span>
+        </div>
+        <div class="result-card" id="result-card">
+          <h3>Detected Waste Type</h3>
+          <p id="result-text">Upload an image to see the result.</p>
+          <span class="status-tag safe" id="result-tag">Safe Waste</span>
+        </div>
+        <div class="alert-card" id="photo-alert">
+          <h3>? Hazardous Waste Detected</h3>
+          <p>This item appears to be broken glass. Handle carefully and dispose in a hazardous waste bin.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- URBAN TAB -->
+    <section class="tab-section" data-tab="urban">
+      <div class="section-title">
+        <h2>Urban Area</h2>
+        <p>Smart city waste management overview.</p>
+      </div>
+      <div class="card-grid">
+        <article class="stat-card">
+          <h3>Smart Bin Status</h3>
+          <p class="stat">78% Full</p>
+          <span class="trend up">12 bins available</span>
+        </article>
+        <article class="stat-card">
+          <h3>Collection Schedule</h3>
+          <p class="stat">6:00 AM</p>
+          <span class="trend up">Next pickup tomorrow</span>
+        </article>
+        <article class="stat-card">
+          <h3>Waste Statistics</h3>
+          <p class="stat">3.8 tons</p>
+          <span class="trend down">-4% this week</span>
+        </article>
+      </div>
+      <div class="panel">
+        <h3>Urban Waste Breakdown</h3>
+        <div class="chart-grid">
+          <canvas id="urban-pie" height="200"></canvas>
+          <canvas id="urban-bar" height="200"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- RURAL TAB -->
+    <section class="tab-section" data-tab="rural">
+      <div class="section-title">
+        <h2>Rural Area</h2>
+        <p>Solutions tailored for farms and villages.</p>
+      </div>
+      <div class="card-grid">
+        <article class="stat-card">
+          <h3>Crop Waste Management</h3>
+          <p class="stat">Compost</p>
+          <span class="trend up">Convert residue to soil booster</span>
+        </article>
+        <article class="stat-card">
+          <h3>Animal Waste to Biogas</h3>
+          <p class="stat">Biogas</p>
+          <span class="trend up">Clean energy & fertilizer</span>
+        </article>
+        <article class="stat-card">
+          <h3>Composting Guide</h3>
+          <p class="stat">4 Steps</p>
+          <span class="trend up">Layer, water, turn, cure</span>
+        </article>
+      </div>
+      <div class="panel">
+        <h3>Agricultural Waste Suggestions</h3>
+        <ul class="tip-list">
+          <li>Crop waste ? Compost with microbial inoculants.</li>
+          <li>Animal dung ? Biogas digesters for clean energy.</li>
+          <li>Stubble ? Mulch to retain soil moisture.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Nearby Recycling Centers</h3>
+        <ul class="center-list">
+          <li>Village Recycling Hub - 9 km</li>
+          <li>BioWaste Yard - 14 km</li>
+          <li>Farm Compost Station - 5 km</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+    <nav class="bottom-nav" aria-label="Navigation">
+    <a class="nav-item active" href="dashboard.html">
+      <span class="nav-icon">&#x1F3E0;</span>
+      Home
+    </a>
+    <a class="nav-item" href="scan.html">
+      <span class="nav-icon">&#x1F4F7;</span>
+      Take Photo
+    </a>
+    <a class="nav-item" href="urban.html">
+      <span class="nav-icon">&#x1F3D9;</span>
+      Urban Area
+    </a>
+    <a class="nav-item" href="rural.html">
+      <span class="nav-icon">&#x1F33E;</span>
+      Rural Area
+    </a>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>
+
+
+

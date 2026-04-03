@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Household Participation | Smart Waste Tracker</title>
+  <link rel="stylesheet" href="/assets/css/participation.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <main class="page">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Household Participation</p>
+        <h1>Participation Tracking</h1>
+        <p class="subtitle">Track household recycling habits and unlock eco rewards.</p>
+      </div>
+      <div class="profile-chip">ABHII</div>
+    </header>
+
+    <section class="panel">
+      <h2>Recycling Challenges</h2>
+      <div class="card-grid">
+        <article class="challenge-card">
+          <div class="card-icon">D</div>
+          <div>
+            <h3>Daily Challenge</h3>
+            <p>Recycle 3 plastic bottles</p>
+            <span class="reward">Reward: +20 Eco Points</span>
+          </div>
+        </article>
+        <article class="challenge-card">
+          <div class="card-icon">W</div>
+          <div>
+            <h3>Weekly Challenge</h3>
+            <p>Segregate 10 waste items</p>
+            <span class="reward">Reward: Eco Badge</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Community Leaderboard</h2>
+      <ol class="leaderboard">
+        <li>
+          <span class="medal gold">1</span>
+          <span>ABHII</span>
+          <span class="points">150 points</span>
+        </li>
+        <li>
+          <span class="medal silver">2</span>
+          <span>Riya</span>
+          <span class="points">120 points</span>
+        </li>
+        <li>
+          <span class="medal bronze">3</span>
+          <span>Aman</span>
+          <span class="points">100 points</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="panel">
+      <h2>Monthly Recycling Goal</h2>
+      <div class="progress-block" data-progress="80">
+        <div class="progress-row">
+          <span>Progress</span>
+          <span class="progress-text" id="progress-text">80% Completed</span>
+        </div>
+        <div class="progress-bar">
+          <span id="progress-fill" style="width: 0%"></span>
+        </div>
+        <p class="message" id="progress-message"></p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Achievement Badges</h2>
+      <div class="badge-grid">
+        <article class="badge-card">
+          <div class="badge-icon">RB</div>
+          <div>
+            <h3>Recycling Beginner</h3>
+            <p>Recycle 10 items</p>
+          </div>
+        </article>
+        <article class="badge-card">
+          <div class="badge-icon">EH</div>
+          <div>
+            <h3>Eco Helper</h3>
+            <p>Recycle 50 items</p>
+          </div>
+        </article>
+        <article class="badge-card">
+          <div class="badge-icon">GC</div>
+          <div>
+            <h3>Green Champion</h3>
+            <p>Recycle 100 items</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Recycling Streak</h2>
+      <div class="streak-card" data-streak="7">
+        <div class="streak-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3c2 3-1 4 1 7 1 2 4 2 4 6 0 3-2 5-5 5s-5-2-5-5c0-3 2-4 2-6 0-3-1-4 3-7z" />
+          </svg>
+        </div>
+        <div>
+          <p class="streak-title">7 Days Continuous Recycling</p>
+          <p class="streak-message" id="streak-message"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/assets/js/participation.js"></script>
+</body>
+</html>
+
+

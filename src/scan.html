@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Waste Scanner | Smart Waste Tracker</title>
+  <link rel="stylesheet" href="/assets/css/scan.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <main class="page">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Take Photo</p>
+        <h1>Waste Scanner</h1>
+        <p class="subtitle">Scan waste and get clear guidance on what to do next.</p>
+      </div>
+      <div class="profile-chip">ABHII</div>
+    </header>
+
+    <section class="panel">
+      <h2>Upload Waste Image</h2>
+      <p class="muted">Choose a photo and scan to receive tailored recommendations.</p>
+      <div class="upload-row">
+        <div class="upload-box">
+          <input id="waste-input" class="file-input" type="file" accept="image/*" capture="environment" />
+          <div class="upload-inner">
+            <span class="upload-icon">&#x1F4F7;</span>
+            <strong>Choose Image</strong>
+            <p>PNG, JPG, HEIC</p>
+          </div>
+          <label class="btn outline" for="waste-input">Upload Photo</label>
+        </div>
+        <button class="btn" id="scan-btn" type="button">Scan Waste</button>
+      </div>
+      <div class="preview" id="waste-preview">
+        <span>No image selected yet.</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Scan Result</h2>
+      <div class="result-card" id="result-card">
+        <div class="result-header">
+          <div>
+            <p class="label">Detected Waste Type</p>
+            <h3 id="result-type">Recyclable (Plastic / Paper)</h3>
+          </div>
+          <span class="status-tag recyclable" id="result-tag">Recyclable</span>
+        </div>
+        <div class="result-body">
+          <p class="label">Recommendation</p>
+          <p id="result-reco">Do not throw it in mixed garbage.</p>
+          <p class="label">Suggested Action</p>
+          <p id="result-action">Place this item in the Dry Waste / Recycling Bin.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>What You Should Do</h2>
+      <div class="info-card" id="guide-card">
+        <h3 id="guide-title">Good News! This waste can be recycled.</h3>
+        <ul id="guide-steps" class="step-list">
+          <li>Put it in the recycling bin</li>
+          <li>Give it to a scrap collector</li>
+          <li>Reuse it for DIY crafts</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Reuse Ideas</h2>
+      <div class="idea-grid" id="reuse-grid">
+        <article class="mini-card">Plastic Bottle &#x2192; Plant Pot</article>
+        <article class="mini-card">Glass Bottle &#x2192; Decorative Lamp</article>
+        <article class="mini-card">Paper Waste &#x2192; DIY Paper Bags</article>
+      </div>
+    </section>
+  </main>
+
+    <nav class="bottom-nav" aria-label="Navigation">
+    <a class="nav-item" href="dashboard.html">
+      <span class="nav-icon">&#x1F3E0;</span>
+      Home
+    </a>
+    <a class="nav-item active" href="scan.html">
+      <span class="nav-icon">&#x1F4F7;</span>
+      Take Photo
+    </a>
+    <a class="nav-item" href="urban.html">
+      <span class="nav-icon">&#x1F3D9;</span>
+      Urban Area
+    </a>
+    <a class="nav-item" href="rural.html">
+      <span class="nav-icon">&#x1F33E;</span>
+      Rural Area
+    </a>
+  </nav>
+
+  <script src="/assets/js/scan.js"></script>
+</body>
+</html>
+
+
+

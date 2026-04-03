@@ -1,0 +1,19 @@
+from dataclasses import asdict, dataclass
+from datetime import datetime
+
+
+@dataclass
+class Scan:
+    id: int
+    item: str
+    waste_type: str
+    recommendation: str
+    action: str
+    created_at: str
+
+    @staticmethod
+    def now_iso() -> str:
+        return datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+
+    def to_dict(self) -> dict:
+        return asdict(self)

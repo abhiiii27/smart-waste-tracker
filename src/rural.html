@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rural Area Waste Innovation | Smart Waste Tracker</title>
+  <link rel="stylesheet" href="/assets/css/rural.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <main class="page">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Rural Area</p>
+        <h1>Rural Area Waste Innovation System</h1>
+        <p class="subtitle">Turn agricultural waste into useful products and income opportunities.</p>
+      </div>
+      <div class="profile-chip">ABHII</div>
+    </header>
+
+    <section class="panel">
+      <h2>Upload Agricultural Waste Image</h2>
+      <p class="muted">Choose a photo to scan and receive suggested uses, steps, and markets.</p>
+      <div class="upload-row">
+        <div class="upload-box">
+          <input id="waste-input" class="file-input" type="file" accept="image/*" capture="environment" />
+          <div class="upload-inner">
+            <span class="upload-icon">&#x1F4F7;</span>
+            <strong>Upload Agricultural Waste Image</strong>
+            <p>PNG, JPG, HEIC</p>
+          </div>
+          <label class="btn outline" id="choose-btn" for="waste-input">Choose Image</label>
+        </div>
+        <button class="btn" id="scan-btn" type="button">Scan Waste</button>
+      </div>
+      <div class="preview" id="waste-preview">
+        <span>No image selected yet.</span>
+      </div>
+
+      <div class="result-card" id="result-card">
+        <h3>Scan Result: <span id="result-name">Rice Husk</span></h3>
+        <div class="result-grid">
+          <div>
+            <p class="label">Waste Type</p>
+            <p id="result-type">Agricultural Waste</p>
+          </div>
+          <div>
+            <p class="label">Best Use</p>
+            <p id="result-use">Mushroom Farming</p>
+          </div>
+        </div>
+        <div class="steps" id="result-steps">
+          <h4>Steps</h4>
+          <ol>
+            <li>Sterilize rice husk</li>
+            <li>Add mushroom spawn</li>
+            <li>Keep moisture and wait 20 days</li>
+          </ol>
+        </div>
+        <div class="market" id="result-market">
+          <h4>Market</h4>
+          <ul>
+            <li>Local vegetable market</li>
+            <li>Hotels</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Sample Waste Types &amp; Outputs</h2>
+      <div class="card-grid">
+        <article class="info-card">
+          <h3>&#x1F33E; Cotton Stalk</h3>
+          <p><strong>Best Uses:</strong> Biomass Fuel, Organic Compost, Mushroom Farming</p>
+          <p><strong>Market:</strong> Factories, Organic farms</p>
+        </article>
+        <article class="info-card">
+          <h3>&#x1F404; Cow Dung</h3>
+          <p><strong>Best Uses:</strong> Biogas Production, Vermicompost, Cow Dung Cakes</p>
+          <p><strong>Market:</strong> Local farmers, Temples, Organic fertilizer shops</p>
+        </article>
+        <article class="info-card">
+          <h3>&#x1F35A; Rice Husk</h3>
+          <p><strong>Best Uses:</strong> Mushroom Farming, Biomass Fuel, Compost</p>
+          <p><strong>Market:</strong> Vegetable market, Hotels, Biomass industries</p>
+        </article>
+        <article class="info-card">
+          <h3>&#x1F34C; Banana Stem</h3>
+          <p><strong>Best Uses:</strong> Banana Fiber, Organic Compost, Rope Making</p>
+          <p><strong>Market:</strong> Textile industry, Handicraft market</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>How to Make</h2>
+      <div class="card-grid">
+        <article class="step-card">
+          <h3>Biogas Production</h3>
+          <ol>
+            <li>Mix cow dung with water</li>
+            <li>Put the mixture in a biogas tank</li>
+            <li>Wait 20&#x2013;30 days</li>
+            <li>Methane gas will be produced</li>
+          </ol>
+        </article>
+        <article class="step-card">
+          <h3>Banana Fiber Extraction</h3>
+          <ol>
+            <li>Cut banana stem into strips</li>
+            <li>Scrape fibers gently</li>
+            <li>Wash and dry fibers</li>
+            <li>Spin into yarn or rope</li>
+          </ol>
+        </article>
+        <article class="step-card">
+          <h3>Mushroom Farming (Rice Husk)</h3>
+          <ol>
+            <li>Sterilize rice husk</li>
+            <li>Add mushroom spawn</li>
+            <li>Maintain humidity</li>
+            <li>Harvest after 20 days</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Nearby Markets</h2>
+      <ul class="simple-list">
+        <li>Organic Farm Market</li>
+        <li>Local Vegetable Market</li>
+        <li>Biomass Fuel Buyers</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>Earn From Agricultural Waste</h2>
+      <div class="card-grid">
+        <article class="info-card">
+          <h3>Mushroom Farming from Rice Husk</h3>
+          <p>High demand in urban markets. Profit potential: High.</p>
+          <p class="muted">Market demand: Restaurants, hotels</p>
+        </article>
+        <article class="info-card">
+          <h3>Biogas Production from Cow Dung</h3>
+          <p>Energy + organic slurry. Profit potential: Medium.</p>
+          <p class="muted">Market demand: Local farms, dairy clusters</p>
+        </article>
+        <article class="info-card">
+          <h3>Biomass Briquettes from Cotton Waste</h3>
+          <p>Fuel for industries. Profit potential: High.</p>
+          <p class="muted">Market demand: Brick kilns, small factories</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+    <nav class="bottom-nav" aria-label="Navigation">
+    <a class="nav-item" href="dashboard.html">
+      <span class="nav-icon">&#x1F3E0;</span>
+      Home
+    </a>
+    <a class="nav-item" href="scan.html">
+      <span class="nav-icon">&#x1F4F7;</span>
+      Take Photo
+    </a>
+    <a class="nav-item" href="urban.html">
+      <span class="nav-icon">&#x1F3D9;</span>
+      Urban Area
+    </a>
+    <a class="nav-item active" href="rural.html">
+      <span class="nav-icon">&#x1F33E;</span>
+      Rural Area
+    </a>
+  </nav>
+
+  <script src="/assets/js/rural.js"></script>
+</body>
+</html>
+
+
+
+
