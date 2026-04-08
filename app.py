@@ -1,4 +1,5 @@
 import mimetypes
+import os
 import urllib.parse
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
@@ -10,7 +11,13 @@ PORT = 8000
 ROOT = Path(__file__).resolve().parent
 WEB_ROOT = ROOT / "src"
 ASSETS_ROOT = ROOT / "assets"
-DB_PATH = ROOT / "data" / "app.db"
+DB_CONFIG = {
+    "host": os.getenv("ECOSORT_DB_HOST", "127.0.0.1"),
+    "port": int(os.getenv("ECOSORT_DB_PORT", "3306")),
+    "database": os.getenv("ECOSORT_DB_NAME", "ECOSORT DB"),
+    "user": os.getenv("ECOSORT_DB_USER", "root"),
+    "password": os.getenv("ECOSORT_DB_PASSWORD", ""),
+}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -19,7 +26,7 @@ class Handler(BaseHTTPRequestHandler):
         path = parsed.path
 
         if path.startswith("/api/"):
-            status, body, headers = handle_get(DB_PATH, self.path)
+            status, body, headers = handle_get(DB_CONFIG, self.path)
             self.send_response(status)
             for key, value in headers.items():
                 self.send_header(key, value)
@@ -54,7 +61,7 @@ class Handler(BaseHTTPRequestHandler):
 
         content_length = int(self.headers.get("Content-Length", "0"))
         body = self.rfile.read(content_length) if content_length > 0 else b""
-        status, response_body, headers = handle_post(DB_PATH, path, body)
+        status, response_body, headers = handle_post(DB_CONFIG, path, body)
         self.send_response(status)
         for key, value in headers.items():
             self.send_header(key, value)
@@ -99,7 +106,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    init_db(DB_PATH)
+    init_db(DB_CONFIG)
     server = HTTPServer(("", PORT), Handler)
     print(f"Serving on http://localhost:{PORT}")
     try:

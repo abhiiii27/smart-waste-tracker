@@ -1,2 +1,2 @@
-# This project uses only Python standard library modules.
-# No external dependencies are required.
+# External dependency for MySQL connectivity.
+mysql-connector-python

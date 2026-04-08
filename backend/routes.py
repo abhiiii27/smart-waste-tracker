@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 from .services import create_scan, get_scan, list_scans
@@ -23,7 +22,7 @@ def _error_response(status: int, message: str) -> tuple[int, bytes, dict]:
     return status, body, headers
 
 
-def handle_get(db_path: Path, path: str) -> tuple[int, bytes, dict]:
+def handle_get(db_config: dict, path: str) -> tuple[int, bytes, dict]:
     parsed = urlparse(path)
     if parsed.path == "/api/health":
         return _json_response({"status": "ok"})
@@ -32,7 +31,7 @@ def handle_get(db_path: Path, path: str) -> tuple[int, bytes, dict]:
         params = parse_qs(parsed.query)
         limit = int(params.get("limit", ["100"])[0])
         offset = int(params.get("offset", ["0"])[0])
-        scans = [scan.to_dict() for scan in list_scans(db_path, limit=limit, offset=offset)]
+        scans = [scan.to_dict() for scan in list_scans(db_config, limit=limit, offset=offset)]
         return _json_response({"items": scans})
 
     if parsed.path.startswith("/api/scans/"):
@@ -41,7 +40,7 @@ def handle_get(db_path: Path, path: str) -> tuple[int, bytes, dict]:
         except ValueError:
             return _error_response(400, "Invalid scan id")
 
-        scan = get_scan(db_path, scan_id)
+        scan = get_scan(db_config, scan_id)
         if not scan:
             return _error_response(404, "Scan not found")
         return _json_response(scan.to_dict())
@@ -49,7 +48,7 @@ def handle_get(db_path: Path, path: str) -> tuple[int, bytes, dict]:
     return _error_response(404, "Not found")
 
 
-def handle_post(db_path: Path, path: str, body: bytes) -> tuple[int, bytes, dict]:
+def handle_post(db_config: dict, path: str, body: bytes) -> tuple[int, bytes, dict]:
     if path != "/api/scans":
         return _error_response(404, "Not found")
 
@@ -58,7 +57,7 @@ def handle_post(db_path: Path, path: str, body: bytes) -> tuple[int, bytes, dict
     except json.JSONDecodeError:
         return _error_response(400, "Invalid JSON")
 
-    scan = create_scan(db_path, payload)
+    scan = create_scan(db_config, payload)
     response = scan.to_dict()
     response["status"] = "created"
     return _json_response(response)
