@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, Tuple
 
 import mysql.connector
 
@@ -10,6 +10,16 @@ CREATE TABLE IF NOT EXISTS scans (
     recommendation TEXT NOT NULL,
     action TEXT NOT NULL,
     created_at VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(32) NOT NULL,
+    password_hash VARCHAR(512) NOT NULL,
+    created_at VARCHAR(64) NOT NULL,
+    UNIQUE KEY uniq_users_email (email)
 );
 """
 
@@ -47,3 +57,16 @@ def init_db(config: Dict[str, Any]) -> None:
             cursor.execute(statement)
         cursor.close()
         connection.commit()
+
+
+def check_connection(config: Dict[str, Any]) -> Tuple[bool, str]:
+    try:
+        init_db(config)
+        with get_connection(config) as connection:
+            cursor = connection.cursor()
+            cursor.execute("SELECT 1")
+            cursor.fetchone()
+            cursor.close()
+        return True, "connected"
+    except mysql.connector.Error as exc:
+        return False, str(exc)

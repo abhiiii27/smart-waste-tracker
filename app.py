@@ -4,7 +4,7 @@ import urllib.parse
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 
-from backend.db import init_db
+from backend.db import check_connection
 from backend.routes import handle_get, handle_post
 
 PORT = 8000
@@ -106,7 +106,13 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    init_db(DB_CONFIG)
+    ok, detail = check_connection(DB_CONFIG)
+    if ok:
+        print("Database connected.")
+    else:
+        print("Database connection failed.")
+        print(detail)
+        print("Fix: ensure MySQL is running and update ECOSORT_DB_* environment variables.")
     server = HTTPServer(("", PORT), Handler)
     print(f"Serving on http://localhost:{PORT}")
     try:

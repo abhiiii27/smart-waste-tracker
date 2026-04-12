@@ -202,10 +202,54 @@ h1 {
   min-height: 1.2em;
 }
 
+.success-message {
+  color: var(--accent);
+}
+
 .login-note {
   margin-top: 8px;
   font-size: 0.85rem;
   color: var(--muted);
+}
+
+.form-header {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+
+.form-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.form-links {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.text-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 0.82rem;
 }
 
 @keyframes float {

@@ -187,6 +187,115 @@ function showToast(message) {
   window.setTimeout(() => toast.classList.remove("show"), 2200);
 }
 
+function applyUserProfile() {
+  const raw = localStorage.getItem("ecosort_user");
+  if (!raw) return;
+
+  let user = null;
+  try {
+    user = JSON.parse(raw);
+  } catch (_) {
+    user = null;
+  }
+
+  if (!user) return;
+
+  const fullName = String(user.full_name || "").trim();
+  const name = fullName || String(user.email || "").trim();
+  if (!name) return;
+  const shortName = name.split(" ")[0] || name;
+
+  document.querySelectorAll(".profile-chip").forEach((chip) => {
+    chip.textContent = shortName;
+  });
+
+  const greeting = document.querySelector(".dash-header .eyebrow");
+  if (greeting) {
+    greeting.textContent = `Hello ${shortName}`;
+  }
+}
+
+function pillClassForWasteType(wasteType) {
+  const lower = String(wasteType || "").toLowerCase();
+  if (lower.includes("recycl")) return "recyclable";
+  if (lower.includes("danger") || lower.includes("hazard")) return "danger";
+  if (lower.includes("organic") || lower.includes("safe") || lower.includes("compost")) return "safe";
+  return "general";
+}
+
+function renderActivityItem(scan) {
+  const li = document.createElement("li");
+
+  const left = document.createElement("span");
+  left.textContent = String(scan.item || "Unknown");
+
+  const right = document.createElement("span");
+  const wasteType = String(scan.waste_type || "Unknown");
+  right.textContent = wasteType;
+  right.className = `pill ${pillClassForWasteType(wasteType)}`;
+
+  li.appendChild(left);
+  li.appendChild(right);
+  return li;
+}
+
+function renderHistoryItem(scan) {
+  const li = document.createElement("li");
+  const item = String(scan.item || "Unknown");
+  const wasteType = String(scan.waste_type || "Unknown");
+  li.textContent = `${item} - ${wasteType}`;
+  return li;
+}
+
+async function loadScanHistory() {
+  const activityList = document.querySelector(".activity-list");
+  const historyList = document.querySelector(".history-list");
+  if (!activityList && !historyList) return;
+
+  function setMessage(listEl, message) {
+    if (!listEl) return;
+    listEl.innerHTML = "";
+    const li = document.createElement("li");
+    li.textContent = message;
+    listEl.appendChild(li);
+  }
+
+  try {
+    const response = await fetch("/api/scans?limit=20");
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const message = data && data.error ? String(data.error) : `Failed to load history (${response.status})`;
+      throw new Error(message);
+    }
+
+    const scans = Array.isArray(data.items) ? data.items : [];
+    const recent = scans.slice(0, 3);
+    const history = scans.slice(0, 10);
+
+    if (activityList) {
+      activityList.innerHTML = "";
+      if (recent.length === 0) {
+        setMessage(activityList, "No scan history yet.");
+      } else {
+        recent.forEach((scan) => activityList.appendChild(renderActivityItem(scan)));
+      }
+    }
+
+    if (historyList) {
+      historyList.innerHTML = "";
+      if (history.length === 0) {
+        setMessage(historyList, "No scan history yet.");
+      } else {
+        history.forEach((scan) => historyList.appendChild(renderHistoryItem(scan)));
+      }
+    }
+  } catch (error) {
+    const message = error && error.message ? error.message : "Database not connected.";
+    setMessage(activityList, message);
+    setMessage(historyList, message);
+  }
+}
+
 function initCharts() {
   if (typeof Chart === "undefined") return;
 
@@ -253,7 +362,9 @@ function initCharts() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  applyUserProfile();
   loadReminders();
+  loadScanHistory();
   animateCounters();
   initCharts();
   if (window.location.hash) {

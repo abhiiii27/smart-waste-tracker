@@ -115,6 +115,28 @@ function updateUI(typeKey) {
   reuseGrid.innerHTML = data.reuse.map((idea) => `<article class="mini-card">${idea}</article>`).join("");
 }
 
+async function saveScan(typeKey) {
+  const data = wasteGuides[typeKey];
+  if (!data) return;
+
+  const payload = {
+    item: lastFileName || data.label,
+    waste_type: data.tag,
+    recommendation: data.recommendation,
+    action: data.action
+  };
+
+  try {
+    await fetch("/api/scans", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+  } catch (_) {
+    // Ignore errors (demo-friendly). The UI still works without DB connectivity.
+  }
+}
+
 if (wasteInput && wastePreview) {
   wasteInput.addEventListener("change", () => {
     const file = wasteInput.files && wasteInput.files[0];
@@ -126,12 +148,29 @@ if (wasteInput && wastePreview) {
 }
 
 if (scanBtn) {
-  scanBtn.addEventListener("click", () => {
+  scanBtn.addEventListener("click", async () => {
     const typeKey = classifyWaste(lastFileName || "unknown");
     updateUI(typeKey);
+    await saveScan(typeKey);
   });
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  const raw = localStorage.getItem("ecosort_user");
+  if (raw) {
+    try {
+      const user = JSON.parse(raw);
+      const fullName = String(user.full_name || "").trim();
+      const name = fullName || String(user.email || "").trim();
+      if (name) {
+        const shortName = name.split(" ")[0] || name;
+        document.querySelectorAll(".profile-chip").forEach((chip) => {
+          chip.textContent = shortName;
+        });
+      }
+    } catch (_) {
+      // Ignore malformed stored user.
+    }
+  }
   updateUI("recyclable");
 });

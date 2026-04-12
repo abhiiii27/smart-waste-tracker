@@ -82,5 +82,21 @@ if (scanBtn) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  const raw = localStorage.getItem("ecosort_user");
+  if (raw) {
+    try {
+      const user = JSON.parse(raw);
+      const fullName = String(user.full_name || "").trim();
+      const name = fullName || String(user.email || "").trim();
+      if (name) {
+        const shortName = name.split(" ")[0] || name;
+        document.querySelectorAll(".profile-chip").forEach((chip) => {
+          chip.textContent = shortName;
+        });
+      }
+    } catch (_) {
+      // Ignore malformed stored user.
+    }
+  }
   renderOutput("Rice Husk");
 });
