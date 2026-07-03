@@ -1,161 +1,186 @@
-# ECOSORT
+<div align="center">
+  <h1>♻️ EcoSort AI (Version 2)</h1>
+  <p><strong>A Modern, AI-Powered Smart Waste Management SaaS Platform</strong></p>
 
-## Smart Waste Segregation & Recycling Tracker
+  <p>
+    <img src="https://img.shields.io/badge/status-active-success.svg" alt="Status" />
+    <img src="https://img.shields.io/badge/version-v2.0(Phase%201)-blue.svg" alt="Version" />
+    <img src="https://img.shields.io/badge/React-18.x-61dafb.svg?logo=react" alt="React" />
+    <img src="https://img.shields.io/badge/Tailwind-3.4-38bdf8.svg?logo=tailwindcss" alt="Tailwind" />
+    <img src="https://img.shields.io/badge/Vite-5.x-646cff.svg?logo=vite" alt="Vite" />
+  </p>
+</div>
 
-A lightweight Python HTTP server that serves a multi-page static web UI for a smart waste segregation and recycling tracker, plus a minimal MySQL-backed API for scan history.
+---
 
-## Features
+## 📖 Project Overview
 
-- Multi-page responsive UI (login, registration, dashboard, scan, urban, rural, participation)
-- Static asset serving via a simple Python server
-- MySQL-backed scan history + user auth API with connection health check
-- Optional unit tests for the data layer
+**EcoSort AI** is the Version 2 evolution of the original *ECOSORT* (Smart Waste Tracker). We are transitioning from a basic Python-rendered static web application to a fully decoupled, modern SaaS platform built on a scalable React + Vite + Tailwind architecture. 
 
-## Application Screenshots
+The primary goal of EcoSort AI is to empower municipalities, smart cities, and eco-conscious communities to track, analyze, and optimize their waste management workflows using predictive analytics and gamification.
 
-### Login Page
+## 🎯 Objectives
 
-User sign-in screen with a clean, eco-themed interface and quick navigation links.
+- **Modernize Architecture:** Move to a professional, component-based frontend framework (React).
+- **Premium Aesthetics:** Implement a glassmorphic, dark-mode-first dashboard suited for an enterprise AI tool.
+- **AI-Ready Foundation:** Prepare the UI and infrastructure for future integration of Machine Learning (ML) classification and predictive optimization features.
+- **Maintain Core Workflow:** Preserve the original ECOSORT workflows, such as scan history, gamification (Eco Points), and actionable waste guidelines.
 
-![ECOSORT Login Page](docs/screenshots/login-page.png)
+---
 
-### Dashboard Overview
+## 🚧 Current Project Status
 
-Main dashboard showing activity metrics, recent actions, and quick access to key modules.
+We are currently actively developing **EcoSort AI v2** on the `ecosort-ai-v2` branch.
 
-![ECOSORT Dashboard Overview](docs/screenshots/dashboard-overview.png)
+- 🚧 **EcoSort AI v2:** In Active Development
+- ✅ **Phase 1 Completed:** Dashboard UI Rebuild
 
-## Tech Stack
+> **Note:** The backend, authentication, and AI/ML capabilities are strictly planned for future phases. Current features rely on realistic local mock data.
 
-- Python 3 (standard library)
-- MySQL
-- HTML/CSS/JavaScript
+---
 
-## Installation
+## ✨ Phase 1 Features (Completed)
 
-1. Ensure Python 3 is installed.
-2. Install dependencies:
+The following features have been fully implemented in the new UI:
 
-```bash
-pip install -r requirements.txt
+- **Modern SaaS Dashboard:** A sleek, glassmorphism-inspired dark theme with eco-green accents.
+- **Responsive UI:** Fully responsive grid layout across mobile, tablet, and desktop.
+- **Sidebar Navigation:** Collapsible, modern sidebar for accessing key application modules.
+- **Top Navigation Bar:** Global search, notifications, and user profile management.
+- **Dashboard Overview Cards:** Real-time metrics for Waste Scanned, Items Recycled, Eco Points, and CO₂ Saved.
+- **Waste Analytics Chart:** Dynamic area chart displaying weekly waste trends (powered by Recharts).
+- **Eco Score Section:** A gamification panel showcasing current levels, total points, and progress bars.
+- **Waste Categories:** Visual classification cards for Wet, Dry, Recyclable, and Hazardous waste.
+- **Recent Activity:** A real-time log of recent waste scans and their classification status.
+- **Clean Project Architecture:** Highly modular React component structure ensuring easy scaling for future phases.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** [React 18](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Styling:** [Tailwind CSS (v3.4)](https://tailwindcss.com/)
+- **Charts:** [Recharts](https://recharts.org/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+
+---
+
+## 📂 Project Structure
+
+```text
+client/
+├── public/                 # Static assets
+├── src/
+│   ├── assets/             # Images, SVGs, etc.
+│   ├── components/         # Reusable UI components
+│   │   ├── charts/         # Recharts implementations
+│   │   ├── layout/         # Sidebar, TopNav, DashboardLayout
+│   │   └── ui/             # GlassCards, StatCards, Badges, etc.
+│   ├── data/               # mockData.js (Local state simulation)
+│   ├── pages/              # Main view components (e.g., Dashboard.jsx)
+│   ├── App.jsx             # Route definitions
+│   ├── index.css           # Tailwind imports and base styles
+│   └── main.jsx            # Application entry point
+├── package.json            
+├── postcss.config.js       
+├── tailwind.config.js      
+└── vite.config.js          
 ```
 
-## Database Setup (MySQL)
+---
 
-The app will try to create the database and `scans` + `users` tables automatically on startup.
-If your MySQL user does not have `CREATE` privileges, create the database manually:
+## 🚀 Installation Guide
 
-```sql
-CREATE DATABASE IF NOT EXISTS `ECOSORT DB`;
-```
+To run Phase 1 locally:
 
-## Configure DB Credentials
+1. **Clone the repository and checkout the v2 branch:**
+   ```bash
+   git clone https://github.com/abhiiii27/ECOSORT.git
+   cd ECOSORT
+   git checkout ecosort-ai-v2
+   ```
 
-Update the MySQL settings in `app.py` (or set environment variables as shown below):
+2. **Navigate to the client directory:**
+   ```bash
+   cd client
+   ```
 
-```
-DB_CONFIG = {
-    "host": "127.0.0.1",
-    "port": 3306,
-    "database": "ECOSORT DB",
-    "user": "root",
-    "password": "YOUR_PASSWORD",
-}
-```
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-Recommended (more secure): set environment variables instead of hardcoding:
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-```powershell
-$env:ECOSORT_DB_HOST="127.0.0.1"
-$env:ECOSORT_DB_PORT="3306"
-$env:ECOSORT_DB_NAME="ECOSORT DB"
-$env:ECOSORT_DB_USER="root"
-$env:ECOSORT_DB_PASSWORD="your_password"
-```
+5. **View the app:**
+   Open `http://localhost:5173` in your browser.
 
-To persist them across new terminals on Windows:
+---
 
-```powershell
-setx ECOSORT_DB_HOST "127.0.0.1"
-setx ECOSORT_DB_PORT "3306"
-setx ECOSORT_DB_NAME "ECOSORT DB"
-setx ECOSORT_DB_USER "root"
-setx ECOSORT_DB_PASSWORD "your_password"
-```
+## 📸 Screenshots
 
-## Run
+*(Screenshots will be added as phases are completed)*
 
-```bash
-python app.py
-```
+| Dashboard Overview | Mobile View |
+| :---: | :---: |
+| `[ Placeholder: Dashboard Image ]` | `[ Placeholder: Mobile Image ]` |
 
-Open `http://localhost:8000` in your browser.
+---
 
-## API
+## 🗺️ Development Roadmap
 
-Basic JSON endpoints (MySQL-backed):
+- [x] **Phase 1 — Dashboard UI (Completed)**
+- [ ] **Phase 2 — Complete Frontend**
+  - Analytics Page
+  - Smart Bins Overview
+  - Reports Generation
+  - Settings Panel
+  - AI Insights UI
+- [ ] **Phase 3 — Backend Integration**
+  - REST API connection
+  - User Authentication & Sessions
+  - Database Migration
+- [ ] **Phase 4 — AI & Machine Learning**
+  - Overflow Predictions
+  - Smart Routing for Collection
+- [ ] **Phase 5 — Computer Vision**
+  - Real-time waste classification via camera
+- [ ] **Phase 6 — Deployment & Production**
+  - CI/CD Pipelines
+  - Cloud Hosting
 
-- `GET /api/health`
-- `POST /api/register`
-- `POST /api/login`
-- `GET /api/scans`
-- `GET /api/scans/{id}`
-- `POST /api/scans`
-- `GET /api/history` (alias for scans)
+---
 
-Health response example:
+## 🤖 Future AI Features
 
-```json
-{"status":"ok","db":"connected"}
-```
+While not currently implemented, EcoSort AI is designed specifically to integrate the following technologies in upcoming phases:
+- **Predictive Analytics:** Forecasting bin overflow risks based on historical data.
+- **Smart Recommendations:** Generating actionable insights for users to improve their recycling efficiency.
+- **Image Recognition:** Automatically identifying and classifying waste types from uploaded photos.
 
-Example request:
+---
 
-```bash
-curl -X POST http://localhost:8000/api/scans \
-  -H "Content-Type: application/json" \
-  -d "{\"item\":\"Plastic Bottle\",\"waste_type\":\"Recyclable\",\"recommendation\":\"Rinse and recycle\",\"action\":\"Place in recycling bin\"}"
-```
+## 🤝 Contribution Guide
 
-## Tests (Optional)
+We welcome contributions! As this is an ongoing upgrade, please ensure you are targeting the `ecosort-ai-v2` branch for all PRs. 
+1. Fork the project.
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the Branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
-```bash
-python -m unittest
-```
+---
 
-To include MySQL integration tests, ensure MySQL is running + credentials are set, then run:
+## 📄 License
 
-```powershell
-$env:ECOSORT_RUN_DB_TESTS="1"
-python -m unittest
-```
+Distributed under the MIT License. See `LICENSE` for more information.
 
-## Project Structure
+---
 
-```
-root/
-  app.py
-  backend/
-  data/
-  tests/
-  src/
-    index.html
-    register.html
-    dashboard.html
-    participation.html
-    rural.html
-    scan.html
-    urban.html
-  assets/
-    css/
-    js/
-    images/
-  docs/
-    screenshots/
-      login-page.png
-      dashboard-overview.png
-  .gitignore
-  README.md
-  requirements.txt
-  LICENSE
-```
+## 👨‍💻 Author
+
+**Abhii**  
+- GitHub: [@abhiiii27](https://github.com/abhiiii27)
