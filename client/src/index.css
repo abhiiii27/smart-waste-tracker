@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background-start text-white antialiased;
+    background: linear-gradient(to bottom right, theme('colors.background.start'), theme('colors.background.end'));
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-card-bg backdrop-blur-md border border-card-border shadow-xl;
+  }
+  
+  .glass-hover {
+    @apply hover:bg-opacity-80 transition-all duration-300;
+  }
+
+  /* Custom Scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: theme('colors.background.start');
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.slate.600');
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.slate.500');
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-[#0F172A] text-white antialiased;
+    background: linear-gradient(to bottom right, #0F172A, #1E293B);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-[#1e293b]/70 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+  
+  .glass-hover {
+    @apply hover:bg-opacity-80 transition-all duration-300;
+  }
+
+  /* Custom Scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0F172A;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #64748B;
+  }
+}
